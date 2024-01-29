@@ -43,8 +43,7 @@ function swapPhoto() {
 // Counter for the mImages array
 var mCurrentIndex = 0;
 
-// XMLHttpRequest variable
-var mRequest = new XMLHttpRequest();
+
 
 // Array holding GalleryImage objects (see below).
 var mImages = [];
@@ -89,4 +88,10 @@ function GalleryImage() {
 	let date 
 	//4. either a String (src URL) or an an HTMLImageObject (bitmap of the photo. https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement)
 	let imgPath
+}
+
+function fetchJSON() {
+	// XMLHttpRequest variable
+	var mRequest = new XMLHttpRequest();
+	
 }
