@@ -58,6 +58,12 @@ function swapPhoto() {
 	descriptionElement.innerHTML = "Description: " + mImages[mCurrentIndex].description;
 	dateElement.innerHTML = "Date: " + mImages[mCurrentIndex].date;
 	console.log('swap photo');
+
+	// Set mLastFrameTime variable to zero
+	let mLastFrameTime = 0;
+
+	// Increase the current index number by 1 using the += operator
+	mCurrentIndex += 1;
 }
 
 function previousPhoto(){
@@ -113,7 +119,7 @@ window.addEventListener('load', function () {
 
 }, false);
 
-function GalleryImage() {
+function galleryImage() {
 	//implement me as an object to hold the following data about an image:
 	//1. location where photo was taken
 	let imgLocation
