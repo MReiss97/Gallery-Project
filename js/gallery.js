@@ -46,7 +46,8 @@ function swapPhoto() {
 	let photoElement = document.getElementById('photo');
 
 	// Set the src equal to the array called mImages using the mCurrentIndex
-	photoElement.src = mImages[mCurrentIndex].img;
+	photoElement.src =  mImages[mCurrentIndex].img;
+	// document.getElementById('photo').src = mImages[mCurrentIndex].img;
 
 	  // Create variables for location, description, and date
 	let locationElement = document.getElementsByClassName('location');
@@ -66,7 +67,7 @@ function swapPhoto() {
 	mCurrentIndex += 1;
 }
 
-function previousPhoto(){
+function previousPhoto() {
 	// Decrement the current index
 	mCurrentIndex--;
 
@@ -107,16 +108,17 @@ function makeGalleryImageOnloadCallback(galleryImage) {
 }
 
 $(document).ready(function () {
-
+	fetchJSON();
 	// This initially hides the photos' metadata information
-	$('.details').eq(0).hide();
+	// $('.details').eq(0).hide();
+	
 
 });
 
 window.addEventListener('load', function () {
 
 	console.log('window loaded');
-
+	fetchJSON();
 }, false);
 
 function galleryImage() {
@@ -135,17 +137,33 @@ function galleryImage() {
 function fetchJSON() {
 	mRequest.onreadystatechange = function () {
 		// Sends a signal to connect to the server
-		if (this.readyState >= 200 && this.status < 400) {
-			var mJson = JSON.parse(mRequest.responseText);
-			console.log(mJson)
+		if (this.readyState == 4 && this.status == 200) {
+			let mJson = JSON.parse(mRequest.responseText);
+			console.log(mJson);
+			iterateJSON(mJson);
 		} else {
 			// Logs an error if it happens
 			console.log("We connected to the server but an error occured")
 		}
+		
 	}
-	mRequest.open(GET, mUrl, true)
+	
+	mRequest.open('GET', mUrl, true)
 	mRequest.send()
 }
 
+function iterateJSON(mJson) {
+	for (let x = 0; x < mJson.images.length; x ++) {
+		// Create a new GalleryImage object for each iteration
+		mImages[x] = new galleryImage();
+		// Access the mImages array using the variable x as the index
+		
+		// Set attributes using dot notation from mJson
+		mImages[x].location = mJson.images[x].imgLocation;
+		mImages[x].description = mJson.images[x].description;
+		mImages[x].date = mJson.images[x].date;
+		mImages[x].img = mJson.images[x].imgPath;
+	  }
 
+}
 
