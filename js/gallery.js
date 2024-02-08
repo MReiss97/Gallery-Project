@@ -50,9 +50,9 @@ function swapPhoto() {
 	// document.getElementById('photo').src = mImages[mCurrentIndex].img;
 
 	  // Create variables for location, description, and date
-	let locationElement = document.getElementsByClassName('location');
-	let descriptionElement = document.getElementsByClassName('description');
-	let dateElement = document.getElementsByClassName('date');
+	let locationElement = document.getElementsByClassName('location')[0];
+	let descriptionElement = document.getElementsByClassName('description')[0];
+	let dateElement = document.getElementsByClassName('date')[0];
 
 	 // Set innerHTML for location, description, and date
 	locationElement.innerHTML = "Location: " + mImages[mCurrentIndex].location;
@@ -167,3 +167,43 @@ function iterateJSON(mJson) {
 
 }
 
+$(document).ready(function(){
+	// Click handler for img.moreIndicator
+	$('img.moreIndicator').click(function(){
+	  let $indicator = $(this);
+	  let $details = $('.details');
+	  // Toggle rotation classes
+	  if ($indicator.hasClass('rot90')) {
+		$indicator.removeClass('rot90').addClass('rot270');
+	  } else {
+		$indicator.removeClass('rot270').addClass('rot90');
+	  }
+	  // Slide down/up details div
+	  $details.slideToggle();
+	});
+  
+	// Offset #nextPhoto to the right side of #nav div
+	$('#nextPhoto').position({
+	  my: 'right',
+	  at: 'right',
+	  of: '#nav'
+	});
+  
+	// Click handler for navigating to the next photo
+	$('#nextPhoto').click(function() {
+	  let $mCurrentIndex = $('.thumbnail:visible');
+	  let $nextPhoto = $mCurrentIndex.next('.thumbnail');
+	  if ($nextPhoto.length === 0) {
+		$nextPhoto = $('.thumbnail').first();
+	  }
+	});
+  
+	// Click handler for navigating to the previous photo
+	$('#prevPhoto').click(function() {
+	  let $mCurrentIndex = $('.thumbnail:visible');
+	  let $prevPhoto = $mCurrentIndex.prev('.thumbnail');
+	  if ($prevPhoto.length === 0) {
+		$prevPhoto = $('.thumbnail').last();
+	  }
+	});
+  });
