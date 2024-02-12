@@ -191,19 +191,12 @@ $(document).ready(function(){
   
 	// Click handler for navigating to the next photo
 	$('#nextPhoto').click(function() {
-	  let $mCurrentIndex = $('.thumbnail:visible');
-	  let $nextPhoto = $mCurrentIndex.next('.thumbnail');
-	  if ($nextPhoto.length === 0) {
-		$nextPhoto = $('.thumbnail').first();
-	  }
+	 swapPhoto();
 	});
   
 	// Click handler for navigating to the previous photo
 	$('#prevPhoto').click(function() {
-	  let $mCurrentIndex = $('.thumbnail:visible');
-	  let $prevPhoto = $mCurrentIndex.prev('.thumbnail');
-	  if ($prevPhoto.length === 0) {
-		$prevPhoto = $('.thumbnail').last();
-	  }
+		mCurrentIndex--;
+		swapPhoto();
 	});
   });
