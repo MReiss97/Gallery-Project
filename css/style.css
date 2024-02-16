@@ -39,6 +39,7 @@ body {
 
 .thumbnail {
 	height: 500px;
+	width: 500px;
 	position: relative;
 	box-shadow: 1px 3px 20px 0px;
 	border: 1px blue solid;
