@@ -222,7 +222,7 @@ window.requestAnimFrame = (function () {
   
   function iterateJSON(mJson) {
 	// Create a for loop
-	for (var x = 0; x < mJson.extra.length; x++) {
+	for (var x = 0; x < mJson.images.length; x++) {
 	  // Create a new GalleryImage object at the current index of mImages
 	  mImages[x] = new galleryImage();
 	  // Access the mImages array by using the variable x as the index
